@@ -472,6 +472,7 @@ class Plots:
         plt.title("How ill-conditioned is the covariance matrix?")
         plt.xlabel("Date")
         plt.ylabel("Condition Number (Log Scale)")
+        plt.xticks(rotation=45)
         plt.legend()
         
         self._save_or_show(save_path)

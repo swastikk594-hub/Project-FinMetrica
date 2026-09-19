@@ -1,6 +1,6 @@
 # FinMetrica Research Findings: Covariance Regularization & System Benchmark
-*Generated on: 2026-09-16 13:02:51*
-*Universe Name:* Original Demo (Hindsight Biased)
+*Generated on: 2026-09-19 09:09:02*
+*Universe Name:* Demo
 
 ## Executive Summary
 This report evaluates the empirical impact of advanced portfolio structuring (Ledoit-Wolf covariance shrinkage and Hierarchical Risk Parity) on portfolio stability and out-of-sample performance.
@@ -79,8 +79,8 @@ The table below displays all pairwise Jobson-Korkie-Memmel and stationary-bootst
 ## Known Limitations
 
 **Survivorship and Hindsight Bias**
-This run was evaluated from `2005-01-01` using the following `Original Demo (Hindsight Biased)` universe:
-`XLE, PG, JNJ, MSFT, NVDA`
+This run was evaluated from `2005-01-01` using the following `Demo` universe:
+`AAPL, MSFT, GOOG, AMZN, META, JNJ, PFE, UNH, JPM, BAC`
 
 If this list was selected using present-day knowledge of which companies became successful, applying it backward to a start date before that outcome was known represents a form of hindsight/survivorship bias. This likely inflates the *absolute* Sharpe ratios for all methods since they share the same biased universe.
 
