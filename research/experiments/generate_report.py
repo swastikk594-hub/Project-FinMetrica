@@ -359,7 +359,6 @@ def generate_findings_report(
     demiguel_block = f"\n{demiguel_section}\n" if demiguel_section else ""
 
     md_content = f"""# FinMetrica Research Findings: Covariance Regularization & System Benchmark
-*Generated on: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}*
 *Universe Name:* {run_params.get("universe_name", "Unknown")}
 
 ## Executive Summary

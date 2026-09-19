@@ -1,5 +1,4 @@
 # FinMetrica Research Findings: Covariance Regularization & System Benchmark
-*Generated on: 2026-09-19 09:09:02*
 *Universe Name:* Demo
 
 ## Executive Summary
