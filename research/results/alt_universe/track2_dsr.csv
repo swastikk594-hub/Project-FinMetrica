@@ -1,2 +1,0 @@
-best_method,observed_sharpe,n_trials,variance_across_trials,n_observations,skew,kurtosis,expected_max_sharpe,dsr_probability
-Naive Markowitz,0.5189433453837671,5,0.03262690470705887,1886,0.062119956448973945,3.0404638111815285,0.21541728981179137,1.0
