@@ -465,14 +465,20 @@ class Plots:
         """
         plt.figure()
         
-        plt.plot(track1_df['test_end'], track1_df['cond_sample'], marker='o', label='Sample Covariance', color=self.accent_color)
-        plt.plot(track1_df['test_end'], track1_df['cond_lw'], marker='s', label='Ledoit-Wolf', color=self.primary_color)
+        # Convert strings to datetime to allow matplotlib to smartly format the x-axis
+        dates = pd.to_datetime(track1_df['test_end'])
+        
+        plt.plot(dates, track1_df['cond_sample'], marker='o', label='Sample Covariance', color=self.accent_color)
+        plt.plot(dates, track1_df['cond_lw'], marker='s', label='Ledoit-Wolf', color=self.primary_color)
         
         plt.yscale('log')
         plt.title("How ill-conditioned is the covariance matrix?")
         plt.xlabel("Date")
         plt.ylabel("Condition Number (Log Scale)")
-        plt.xticks(rotation=45)
+        
+        # Automatically format the date labels nicely
+        plt.gcf().autofmt_xdate()
+        
         plt.legend()
         
         self._save_or_show(save_path)
