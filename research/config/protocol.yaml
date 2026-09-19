@@ -1,0 +1,58 @@
+sample_dates:
+  start: 2005-01-01
+  end: 2023-12-31
+  frequency: monthly
+universe:
+  market_caps: [large, mid]
+  price_min: 5.0
+  liquidity_min: 1000000  # daily volume
+  exclude:
+    - ADR
+    - REIT
+    - preferred
+characteristics:
+  value:
+    - earnings_yield
+    - book_to_market
+    - cash_flow_yield
+  quality:
+    - roe
+    - roce
+    - earnings_stability
+    - leverage
+  momentum:
+    - 12m_momentum_skip1
+    - 6m_momentum
+  low_risk:
+    - volatility_30d
+    - beta
+    - downside_volatility
+normalizations:
+  - name: cross_sectional_zscore
+    params: {}
+  - name: cross_sectional_rank
+    params: {method: average}
+  - name: winsorized_zscore
+    params: {lower_pct: 0.01, upper_pct: 0.99}
+  - name: robust_zscore
+    params: {scale_factor: 1.4826}
+  - name: sndz
+    params: {}
+model:
+  type: linear_fama_macbeth
+  horizon_days: 21
+  training_window: 252
+  rolling_step: 21
+portfolio:
+  construction: equal_weight
+  transaction_costs: 0.001
+robustness:
+  metrics:
+    - sign_stability
+    - magnitude_change
+    - statistical_significance
+    - rank_correlation
+    - predictive_R2
+multiple_testing:
+  method: holm
+random_seed: 12345

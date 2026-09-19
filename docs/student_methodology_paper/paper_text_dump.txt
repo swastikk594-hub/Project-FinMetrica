@@ -1,0 +1,47 @@
+How a Quantitative Investing Algorithm Makes Decisions
+A student friendly methodology paper for ages 13 to 18
+QuantFinance EDU Personal Project
+Purpose: explain the method, the checks, and the limits of a data based investing model
+This is an educational research project. It is not financial advice or a promise of profit.
+
+Summary
+This paper explains the method behind QuantFinance EDU, an algorithm that studies shares and exchange traded funds using historical information. Its job is not to predict the future with certainty. Instead, it gathers evidence, gives each asset a clear score, checks how much risk it carries, and builds a portfolio that avoids putting too much money in one place.
+The main idea is simple: a good decision should not depend on one exciting chart or one headline. The algorithm combines several different clues, then tests whether the approach would still have made sense in earlier periods. A result is treated as more trustworthy only after costs, uncertainty, and possible mistakes have been considered.
+Research question
+How can a computer program combine company information, price behaviour, market conditions, and risk measurements to create and test a diversified investment portfolio without using information from the future?
+What the algorithm does
+
+Methodology
+Data collection and preparation
+The program uses daily historical prices, trading volume, public company financial statements, and broad economic measures such as inflation, unemployment, and interest rate spreads. The standard study period begins in 2015. The S and P 500 is used as a broad market comparison, while short term United States Treasury bills provide a reference for a low risk return.
+Before a calculation is made, the data are checked. An asset generally needs at least three years of history. The program flags too many missing observations and unusually large daily movements. It also handles exchange traded funds differently from companies because funds do not have normal company accounts. If a calculation cannot fairly be applied, the program records a neutral score rather than pretending the data are meaningful.
+The six evidence modules
+Each module creates a score that is placed on the same 0 to 100 scale. This makes very different kinds of evidence easier to compare. A high score means the evidence is relatively favourable, not that an investment is guaranteed to rise.
+
+A closer look at the calculations
+Some calculations have short names, but their purpose can be understood without advanced mathematics. Momentum asks whether an asset has generally been moving upward or downward over one, three, six, and twelve month windows. Volatility measures how much prices jump around. A larger value means a bumpier journey. Drawdown measures the fall from a previous high point to a later low point.
+For a company, the valuation module estimates what future cash the business could generate and converts that idea into a value today. Money expected later is worth less than money available now, so the estimate is reduced by a discount rate. Because every estimate can be wrong, the program also tries several sensible growth and discount rate assumptions rather than trusting one number.
+Combining the evidence
+The six module scores are normally given equal importance. Their average becomes a starting score. The risk module can then reduce that score using a risk penalty. Finally, assets are ranked from stronger to weaker. This design makes the decision traceable: a reader can see which parts of the evidence helped or hurt an asset.
+A simplified version is: overall score = average of the six evidence scores minus a risk penalty. The real software also keeps warnings, such as missing data or low confidence, beside the score. A score is therefore an organised summary of evidence, not a command to buy.
+Building the portfolio
+A portfolio is the collection of assets held together. The algorithm chooses weights, which are percentages of the portfolio. It aims for a strong expected reward compared with risk, but it follows safety rules: no short selling, all weights must add to 100 percent, and one asset is normally capped at 40 percent. The program estimates how assets move together, because five assets that all fall at the same time are less diversified than five assets that behave differently.
+It also compares a risk parity approach. Risk parity tries to prevent one risky asset from dominating the portfolio just because it has a high possible return. In practice, diversification does not remove all risk, but it can reduce the damage caused by one poor decision.
+Testing the method fairly
+The algorithm uses walk forward testing. Imagine standing at a point in the past: the program trains only on information available then, makes a portfolio choice, and checks what happened next. It then moves forward and repeats. The study uses three years of earlier data for learning and one later year for testing, with monthly rebalancing. This is closer to a real decision than mixing past and future data together.
+
+How results are judged
+A useful strategy should not only make money in one lucky period. The project compares total and annualised return with volatility and maximum drawdown. It uses the Sharpe ratio to ask how much reward was achieved for each unit of risk. It also uses additional checks to reduce the chance of being fooled by trying many ideas and reporting only the best one.
+The algorithm can be tested under different assumptions, such as different momentum windows, risk limits, and position caps. If a small change in an assumption completely changes the result, the method is fragile and should be treated carefully.
+Limitations and responsible use
+Historical success does not prove future success. Markets change, data may contain errors, and a model can discover patterns that happened by chance. A backtest may also underestimate the real difficulty of trading, including larger costs, delays, taxes, and the effect of many people trying the same strategy.
+The program is for education and research, not personal financial advice.
+It does not guarantee profit and can lose money, including during unusual market events.
+Students should treat a score as a question to investigate, not a reason to invest immediately.
+Any real investment decision should consider personal goals, risk tolerance, rules, and advice from an appropriately qualified adult or professional.
+Conclusion
+QuantFinance EDU turns a difficult investing question into a repeatable process: collect data, check it, study it from several angles, control risk, and test decisions honestly. The most important lesson is not that a computer can predict markets perfectly. It is that good research is transparent about its evidence, its assumptions, and what it does not know.
+Glossary
+
+Project sources
+This methodology paper is based on the QuantFinance EDU project configuration, implementation notes, and source code. The project uses public market and economic data. Methods named in the project include company financial analysis, discounted cash flow valuation, price momentum, factor regression, risk measurement, portfolio optimisation, and walk forward backtesting.

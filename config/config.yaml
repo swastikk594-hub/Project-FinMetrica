@@ -1,0 +1,300 @@
+# QuantFinance-EDU Configuration
+# ============================================================
+# All tunable parameters live here. No magic numbers in source code.
+# ============================================================
+
+system:
+  random_seed: 42
+  log_level: INFO
+  results_dir: results/
+  cache_dir: data/cache/
+  ff_factors_dir: data/ff_factors/
+
+data:
+  # Price data
+  price_interval: "1d"               # daily OHLCV
+  default_start: "2015-01-01"        # default history start
+  benchmark_ticker: "^GSPC"          # S&P 500 as default benchmark
+  risk_free_ticker: "^IRX"           # 13-week T-bill yield (annualised %)
+  
+  # Validation thresholds
+  max_missing_pct: 0.05              # flag if >5% of observations missing
+  outlier_z_threshold: 5.0          # flag returns with |z| > 5 as outliers
+  min_history_years: 3              # minimum history required for analysis
+
+  # CSV fallback settings
+  csv_fallback_enabled: true
+  csv_price_path: data/raw/prices.csv
+  csv_fundamentals_path: data/raw/fundamentals.csv
+
+  # Fama-French
+  ff_url_3factor: "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_CSV.zip"
+  ff_url_momentum: "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Momentum_Factor_CSV.zip"
+
+  # FRED macro series
+  fred_series:
+    gdp: "GDP"                       # US Real GDP (quarterly)
+    cpi: "CPIAUCSL"                  # CPI All Urban Consumers
+    unemployment: "UNRATE"           # Unemployment rate
+    fed_funds: "FEDFUNDS"            # Federal Funds Rate
+    term_spread: "T10Y2Y"            # 10Y-2Y Treasury spread
+    credit_spread: "BAA10Y"          # Baa-10Y Treasury spread
+
+# ============================================================
+# MODULE 1: Fundamentals / Business Quality
+# ============================================================
+module1:
+  enabled: true
+  
+  # Piotroski F-Score weights (equal by default; 1 point each of 9)
+  fscore_components:
+    - roa_positive          # ROA > 0
+    - cfo_positive          # Cash Flow from Operations > 0
+    - roa_increasing        # ROA increasing YoY
+    - accruals              # CFO/Assets > ROA (earnings quality)
+    - leverage_declining    # Long-term debt/Assets decreasing
+    - liquidity_improving   # Current ratio increasing
+    - no_dilution           # No new shares issued
+    - gross_margin_improving
+    - asset_turnover_improving
+  
+  # Dupont decomposition components
+  dupont:
+    net_margin_weight: 0.33
+    asset_turnover_weight: 0.33
+    equity_multiplier_weight: 0.33
+  
+  # Altman Z-Score (public company version)
+  altman_z:
+    # Z = 1.2*X1 + 1.4*X2 + 3.3*X3 + 0.6*X4 + 1.0*X5
+    coefficients: [1.2, 1.4, 3.3, 0.6, 1.0]
+    safe_zone_threshold: 2.99
+    distress_zone_threshold: 1.81
+  
+  # Normalisation for module score
+  normalisation: "zscore"            # options: zscore, minmax, rank, robust
+  lookback_quarters: 8               # quarters of fundamental history
+
+# ============================================================
+# MODULE 2: Valuation
+# ============================================================
+module2:
+  enabled: true
+  
+  dcf:
+    projection_years: 5
+    terminal_growth_rate: 0.025      # 2.5% perpetuity growth
+    terminal_growth_sensitivity: [0.01, 0.015, 0.02, 0.025, 0.03, 0.035]
+    wacc_sensitivity: [0.06, 0.08, 0.10, 0.12, 0.14]
+    use_historical_growth: true      # derive growth from historical FCF
+    risk_free_rate_source: "fred"    # or "manual"
+    equity_risk_premium: 0.055       # 5.5% ERP (Damodaran estimate)
+  
+  relative_valuation:
+    metrics: ["pe_ratio", "pb_ratio", "ev_ebitda", "ps_ratio"]
+    peer_comparison: "sector_zscore" # z-score within sector
+    lookback_years: 5                # years of historical ratio data
+  
+  normalisation: "zscore"
+
+# ============================================================
+# MODULE 3: Time-Series / Price Model
+# ============================================================
+module3:
+  enabled: true
+  
+  returns:
+    method: "log"                    # "log" or "arithmetic" — see decision log
+    annualisation_factor: 252        # trading days per year
+  
+  momentum:
+    periods: [21, 63, 126, 252]      # ~1, 3, 6, 12 months in trading days
+    skip_recent: 21                  # 1-month reversal skip (standard in literature)
+    primary_period: 252              # main momentum window
+  
+  hurst:
+    enabled: true
+    min_window: 100                  # minimum observations for Hurst estimation
+    method: "rs"                     # Rescaled Range method
+  
+  autocorrelation:
+    lags: [1, 5, 10, 21]
+    ljung_box_lags: 10
+  
+  moving_averages:
+    short_window: 50
+    long_window: 200
+  
+  normalisation: "zscore"
+
+# ============================================================
+# MODULE 4: Statistical / Factor Model
+# ============================================================
+module4:
+  enabled: true
+  
+  factor_model: "ff4"                # "ff3", "ff4" (Carhart), "ff5"
+  rolling_window: 36                 # months for rolling factor loading
+  min_observations: 24              # minimum months required
+  
+  regression:
+    method: "ols"                    # "ols" or "robust" (Huber)
+    confidence_level: 0.95
+  
+  # Factor loadings interpretation
+  alpha_annualisation: 12            # monthly alpha × 12 → annual
+  
+  normalisation: "zscore"
+
+# ============================================================
+# MODULE 5: Risk Model
+# ============================================================
+module5:
+  enabled: true
+  
+  volatility:
+    window: 252                      # 1-year rolling volatility
+    annualise: true
+  
+  var:
+    confidence_levels: [0.95, 0.99]
+    method: "historical"             # "historical", "parametric", "montecarlo"
+    lookback: 252
+    n_simulations: 10000            # for Monte Carlo VaR
+  
+  drawdown:
+    window: null                     # null = full history
+  
+  beta:
+    benchmark: "^GSPC"
+    window: 252
+  
+  downside_deviation:
+    mar: 0.0                         # Minimum Acceptable Return (daily)
+  
+  risk_weights:
+    # How sub-risks combine into module risk score
+    volatility: 0.25
+    beta: 0.20
+    max_drawdown: 0.25
+    cvar_99: 0.30
+  
+  normalisation: "zscore"
+
+# ============================================================
+# MODULE 6: Macro / Systematic Factor Model
+# ============================================================
+module6:
+  enabled: true
+  
+  macro_variables:
+    - term_spread
+    - credit_spread
+    - cpi_yoy                        # CPI year-over-year change
+    - unemployment
+  
+  regression:
+    lag_months: 1                    # macro data released with lag
+    rolling_window: 36               # months
+    method: "ols"
+  
+  regime:
+    # Defined by term spread
+    recession_threshold: 0.0         # negative term spread → recession signal
+  
+  normalisation: "zscore"
+
+# ============================================================
+# MODULE 7: Portfolio Optimisation
+# ============================================================
+module7:
+  enabled: true
+  
+  optimisation:
+    objective: "max_sharpe"          # "max_sharpe", "min_variance", "risk_parity"
+    risk_free_rate: null             # null → use current T-bill from data
+    
+    constraints:
+      min_weight: 0.0                # no short selling
+      max_weight: 0.40               # max 40% in any single asset
+      sum_weights: 1.0               # fully invested
+    
+    covariance_estimator: "ledoit_wolf"  # "sample" or "ledoit_wolf"
+    
+    n_frontier_points: 100           # points on efficient frontier
+  
+  monte_carlo:
+    n_simulations: 10000
+    time_horizon_days: 252
+    distribution: "normal"           # "normal" or "t" (fat tails)
+    t_degrees_of_freedom: 5
+  
+  risk_parity:
+    enabled: true                    # compute risk parity as alternative
+  
+  normalisation: "zscore"
+
+# ============================================================
+# INTEGRATION / AGGREGATION LAYER
+# ============================================================
+integration:
+  # Weighting scheme for module combination
+  weighting_scheme: "equal"         # "equal", "vol_adjusted", "ic_based"
+  
+  # Risk penalty applied to composite score
+  risk_penalty:
+    enabled: true
+    lambda: 0.3                      # 0 = no penalty, 1 = full risk deduction
+  
+  # Module weights (used only if weighting_scheme = "manual")
+  manual_weights:
+    m1: 0.15
+    m2: 0.20
+    m3: 0.15
+    m4: 0.15
+    m5: 0.15
+    m6: 0.10
+    m7: 0.10
+  
+  # Normalisation of final composite
+  final_normalisation: "rank"        # rank to 0-100 for readability
+  
+  # Uncertainty
+  bootstrap:
+    n_samples: 1000
+    confidence_level: 0.90
+
+# ============================================================
+# BACKTESTING
+# ============================================================
+backtesting:
+  method: "walk_forward"            # "walk_forward" or "expanding"
+  train_years: 3
+  test_years: 1
+  rebalance_freq: "monthly"         # "monthly", "quarterly"
+  transaction_cost_bps: 10         # 10 basis points per trade
+  
+  benchmark: "^GSPC"
+  
+  metrics:
+    - total_return
+    - annualised_return
+    - volatility
+    - sharpe_ratio
+    - sortino_ratio
+    - max_drawdown
+    - calmar_ratio
+    - information_ratio
+    - beta
+    - alpha
+
+# ============================================================
+# SENSITIVITY ANALYSIS
+# ============================================================
+sensitivity:
+  parameters:
+    momentum_window: [63, 126, 189, 252, 315]
+    var_confidence: [0.90, 0.95, 0.99]
+    risk_penalty_lambda: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
+    rolling_factor_window: [24, 36, 48, 60]
+    max_position_size: [0.20, 0.30, 0.40, 0.50]

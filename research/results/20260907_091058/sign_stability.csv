@@ -1,0 +1,5 @@
+,cross_sectional_zscore,cross_sectional_rank,winsorized_zscore,robust_zscore,sndz
+delta_r2,1.0,1.0,1.0,1.0,1.0
+r2_oos_full,1.0,1.0,1.0,1.0,1.0
+r2_oos_base,1.0,1.0,1.0,1.0,1.0
+n_test_obs,1.0,1.0,1.0,1.0,1.0

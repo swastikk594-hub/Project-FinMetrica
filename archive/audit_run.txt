@@ -1,0 +1,214 @@
+﻿+-----------------------------------------------------------------------------+
+|                  ========================================                   |
+|                        QuantFinance-EDU Analysis System                     |
+|                  ========================================                   |
++-----------------------------------------------------------------------------+
+python : 2026-08-30 00:31:27,159 - QuantFinPipeline - INFO - Fetching price data for: ['AAPL', 'MSFT', 'GOOGL']
+At line:1 char:1
++ python -m src.cli --tickers AAPL MSFT GOOGL --start 2018-01-01 2>&1 | ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-08-30 00:3...MSFT', 'GOOGL']:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-08-30 00:31:27,160 - src.data.fetcher - INFO - Loading cached price data for AAPL
+2026-08-30 00:31:27,195 - src.data.fetcher - INFO - Loading cached price data for MSFT
+2026-08-30 00:31:27,202 - src.data.fetcher - INFO - Loading cached price data for GOOGL
+2026-08-30 00:31:27,208 - QuantFinPipeline - INFO - Fetching fundamental data...
+2026-08-30 00:31:27,208 - src.data.fetcher - INFO - Loading cached fundamental data for AAPL
+2026-08-30 00:31:27,209 - src.data.fetcher - INFO - Loading cached fundamental data for MSFT
+2026-08-30 00:31:27,210 - src.data.fetcher - INFO - Loading cached fundamental data for GOOGL
+2026-08-30 00:31:27,211 - QuantFinPipeline - INFO - Fetching Fama-French factor data...
+2026-08-30 00:31:27,212 - src.data.fetcher - INFO - Loading cached Fama-French 4-factor data
+2026-08-30 00:31:27,216 - QuantFinPipeline - INFO - Fetching macro data (FRED)...
+2026-08-30 00:31:27,216 - src.data.fetcher - INFO - Loading cached FRED data for FEDFUNDS
+2026-08-30 00:31:27,220 - src.data.fetcher - INFO - Loading cached FRED data for T10Y2Y
+2026-08-30 00:31:27,231 - src.data.fetcher - INFO - Loading cached FRED data for BAMLH0A0HYM2
+2026-08-30 00:31:27,260 - QuantFinPipeline - INFO - Fetching S&P 500 benchmark...
+2026-08-30 00:31:27,260 - src.data.fetcher - INFO - Downloading benchmark data for ^GSPC
+2026-08-30 00:31:28,173 - QuantFinPipeline - INFO - Running data quality checks...
+
+Data Quality Report: PASSED
+
+Warnings:
+  ! AAPL: Extreme return outliers detected
+  ! MSFT: Extreme return outliers detected
+  ! GOOGL: Extreme return outliers detected
+       Summary Statistics        
++-------------------------------+
+| Metric                | Value |
+|-----------------------+-------|
+| Total Tickers Checked | 3     |
+| Total Errors          | 0     |
+| Total Warnings        | 3     |
++-------------------------------+
+2026-08-30 00:31:28,357 - QuantFinPipeline - INFO - Running M1 ù Fundamental Quality...
+2026-08-30 00:31:28,373 - QuantFinPipeline - INFO - Running M2 ù Valuation...
+2026-08-30 00:31:28,389 - QuantFinPipeline - INFO - Running M3 ù Time-Series...
+2026-08-30 00:31:28,389 - src.modules.m3_timeseries - INFO - Running Time Series Module for AAPL
+2026-08-30 00:31:28,622 - src.modules.m3_timeseries - INFO - Running Time Series Module for MSFT
+2026-08-30 00:31:28,807 - src.modules.m3_timeseries - INFO - Running Time Series Module for GOOGL
+2026-08-30 00:31:28,980 - QuantFinPipeline - INFO - Running M4 ù Factor Model...
+2026-08-30 00:31:28,980 - src.modules.m4_factors - INFO - Running Factor Model Module for AAPL
+2026-08-30 00:31:29,043 - src.modules.m4_factors - INFO - Running Factor Model Module for MSFT
+2026-08-30 00:31:29,099 - src.modules.m4_factors - INFO - Running Factor Model Module for GOOGL
+2026-08-30 00:31:29,154 - QuantFinPipeline - INFO - Running M5 ù Risk...
+2026-08-30 00:31:29,154 - src.modules.m5_risk - INFO - Running Risk Module for AAPL
+2026-08-30 00:31:29,162 - src.modules.m5_risk - INFO - Running Risk Module for MSFT
+2026-08-30 00:31:29,169 - src.modules.m5_risk - INFO - Running Risk Module for GOOGL
+2026-08-30 00:31:29,174 - QuantFinPipeline - INFO - Running M6 ù Macro...
+2026-08-30 00:31:29,174 - src.modules.m6_macro - INFO - Running Macro Module for AAPL
+2026-08-30 00:31:29,218 - QuantFinPipeline - WARNING - M6 failed for AAPL: 'predicted_macro_return'
+2026-08-30 00:31:29,218 - src.modules.m6_macro - INFO - Running Macro Module for MSFT
+2026-08-30 00:31:29,257 - QuantFinPipeline - WARNING - M6 failed for MSFT: 'predicted_macro_return'
+2026-08-30 00:31:29,258 - src.modules.m6_macro - INFO - Running Macro Module for GOOGL
+2026-08-30 00:31:29,301 - QuantFinPipeline - WARNING - M6 failed for GOOGL: 'predicted_macro_return'
+2026-08-30 00:31:29,301 - QuantFinPipeline - INFO - Running Integration Layer...
+2026-08-30 00:31:29,321 - QuantFinPipeline - INFO - Running M7 ù Portfolio Optimisation...
+2026-08-30 00:31:29,793 - QuantFinPipeline - INFO - Running Walk-Forward Backtesting Engine...
+2026-08-30 00:31:29,804 - src.backtesting.engine - INFO - Generated 5 walk-forward splits
+2026-08-30 00:31:29,804 - src.backtesting.engine - INFO - Fold 1/5: train=2018-01-03\u21922020-12-31, 
+test=2021-01-04\u21922022-01-03
+2026-08-30 00:31:29,836 - src.modules.m3_timeseries - INFO - Running Time Series Module for AAPL
+2026-08-30 00:31:29,922 - src.modules.m3_timeseries - INFO - Running Time Series Module for MSFT
+2026-08-30 00:31:30,003 - src.modules.m3_timeseries - INFO - Running Time Series Module for GOOGL
+2026-08-30 00:31:30,082 - src.modules.m4_factors - INFO - Running Factor Model Module for AAPL
+2026-08-30 00:31:30,107 - src.modules.m4_factors - INFO - Running Factor Model Module for MSFT
+2026-08-30 00:31:30,130 - src.modules.m4_factors - INFO - Running Factor Model Module for GOOGL
+2026-08-30 00:31:30,157 - src.modules.m5_risk - INFO - Running Risk Module for AAPL
+2026-08-30 00:31:30,166 - src.modules.m5_risk - INFO - Running Risk Module for MSFT
+2026-08-30 00:31:30,175 - src.modules.m5_risk - INFO - Running Risk Module for GOOGL
+2026-08-30 00:31:30,184 - src.modules.m6_macro - INFO - Running Macro Module for AAPL
+2026-08-30 00:31:30,191 - QuantFinPipeline - WARNING - M6 failed for AAPL: 'predicted_macro_return'
+2026-08-30 00:31:30,191 - src.modules.m6_macro - INFO - Running Macro Module for MSFT
+2026-08-30 00:31:30,198 - QuantFinPipeline - WARNING - M6 failed for MSFT: 'predicted_macro_return'
+2026-08-30 00:31:30,198 - src.modules.m6_macro - INFO - Running Macro Module for GOOGL
+2026-08-30 00:31:30,205 - QuantFinPipeline - WARNING - M6 failed for GOOGL: 'predicted_macro_return'
+2026-08-30 00:31:30,268 - src.backtesting.engine - INFO - Fold 2/5: train=2018-01-03\u21922022-01-03, 
+test=2022-01-04\u21922023-01-03
+2026-08-30 00:31:30,300 - src.modules.m3_timeseries - INFO - Running Time Series Module for AAPL
+2026-08-30 00:31:30,406 - src.modules.m3_timeseries - INFO - Running Time Series Module for MSFT
+2026-08-30 00:31:30,512 - src.modules.m3_timeseries - INFO - Running Time Series Module for GOOGL
+2026-08-30 00:31:30,625 - src.modules.m4_factors - INFO - Running Factor Model Module for AAPL
+2026-08-30 00:31:30,660 - src.modules.m4_factors - INFO - Running Factor Model Module for MSFT
+2026-08-30 00:31:30,697 - src.modules.m4_factors - INFO - Running Factor Model Module for GOOGL
+2026-08-30 00:31:30,735 - src.modules.m5_risk - INFO - Running Risk Module for AAPL
+2026-08-30 00:31:30,742 - src.modules.m5_risk - INFO - Running Risk Module for MSFT
+2026-08-30 00:31:30,751 - src.modules.m5_risk - INFO - Running Risk Module for GOOGL
+2026-08-30 00:31:30,759 - src.modules.m6_macro - INFO - Running Macro Module for AAPL
+2026-08-30 00:31:30,773 - QuantFinPipeline - WARNING - M6 failed for AAPL: 'predicted_macro_return'
+2026-08-30 00:31:30,774 - src.modules.m6_macro - INFO - Running Macro Module for MSFT
+2026-08-30 00:31:30,789 - QuantFinPipeline - WARNING - M6 failed for MSFT: 'predicted_macro_return'
+2026-08-30 00:31:30,789 - src.modules.m6_macro - INFO - Running Macro Module for GOOGL
+2026-08-30 00:31:30,804 - QuantFinPipeline - WARNING - M6 failed for GOOGL: 'predicted_macro_return'
+2026-08-30 00:31:30,889 - src.backtesting.engine - INFO - Fold 3/5: train=2018-01-03\u21922023-01-03, 
+test=2023-01-04\u21922024-01-03
+2026-08-30 00:31:30,917 - src.modules.m3_timeseries - INFO - Running Time Series Module for AAPL
+2026-08-30 00:31:31,040 - src.modules.m3_timeseries - INFO - Running Time Series Module for MSFT
+2026-08-30 00:31:31,175 - src.modules.m3_timeseries - INFO - Running Time Series Module for GOOGL
+2026-08-30 00:31:31,299 - src.modules.m4_factors - INFO - Running Factor Model Module for AAPL
+2026-08-30 00:31:31,344 - src.modules.m4_factors - INFO - Running Factor Model Module for MSFT
+2026-08-30 00:31:31,463 - src.modules.m4_factors - INFO - Running Factor Model Module for GOOGL
+2026-08-30 00:31:31,502 - src.modules.m5_risk - INFO - Running Risk Module for AAPL
+2026-08-30 00:31:31,510 - src.modules.m5_risk - INFO - Running Risk Module for MSFT
+2026-08-30 00:31:31,518 - src.modules.m5_risk - INFO - Running Risk Module for GOOGL
+2026-08-30 00:31:31,527 - src.modules.m6_macro - INFO - Running Macro Module for AAPL
+2026-08-30 00:31:31,548 - QuantFinPipeline - WARNING - M6 failed for AAPL: 'predicted_macro_return'
+2026-08-30 00:31:31,548 - src.modules.m6_macro - INFO - Running Macro Module for MSFT
+2026-08-30 00:31:31,567 - QuantFinPipeline - WARNING - M6 failed for MSFT: 'predicted_macro_return'
+2026-08-30 00:31:31,567 - src.modules.m6_macro - INFO - Running Macro Module for GOOGL
+2026-08-30 00:31:31,588 - QuantFinPipeline - WARNING - M6 failed for GOOGL: 'predicted_macro_return'
+2026-08-30 00:31:31,653 - src.backtesting.engine - INFO - Fold 4/5: train=2018-01-03\u21922024-01-03, 
+test=2024-01-04\u21922025-01-03
+2026-08-30 00:31:31,684 - src.modules.m3_timeseries - INFO - Running Time Series Module for AAPL
+2026-08-30 00:31:31,837 - src.modules.m3_timeseries - INFO - Running Time Series Module for MSFT
+2026-08-30 00:31:31,984 - src.modules.m3_timeseries - INFO - Running Time Series Module for GOOGL
+2026-08-30 00:31:32,134 - src.modules.m4_factors - INFO - Running Factor Model Module for AAPL
+2026-08-30 00:31:32,187 - src.modules.m4_factors - INFO - Running Factor Model Module for MSFT
+2026-08-30 00:31:32,236 - src.modules.m4_factors - INFO - Running Factor Model Module for GOOGL
+2026-08-30 00:31:32,284 - src.modules.m5_risk - INFO - Running Risk Module for AAPL
+2026-08-30 00:31:32,292 - src.modules.m5_risk - INFO - Running Risk Module for MSFT
+2026-08-30 00:31:32,299 - src.modules.m5_risk - INFO - Running Risk Module for GOOGL
+2026-08-30 00:31:32,307 - src.modules.m6_macro - INFO - Running Macro Module for AAPL
+2026-08-30 00:31:32,343 - QuantFinPipeline - WARNING - M6 failed for AAPL: 'predicted_macro_return'
+2026-08-30 00:31:32,343 - src.modules.m6_macro - INFO - Running Macro Module for MSFT
+2026-08-30 00:31:32,371 - QuantFinPipeline - WARNING - M6 failed for MSFT: 'predicted_macro_return'
+2026-08-30 00:31:32,371 - src.modules.m6_macro - INFO - Running Macro Module for GOOGL
+2026-08-30 00:31:32,398 - QuantFinPipeline - WARNING - M6 failed for GOOGL: 'predicted_macro_return'
+2026-08-30 00:31:32,452 - src.backtesting.engine - INFO - Fold 5/5: train=2018-01-03\u21922025-01-03, 
+test=2025-01-06\u21922026-01-02
+2026-08-30 00:31:32,483 - src.modules.m3_timeseries - INFO - Running Time Series Module for AAPL
+2026-08-30 00:31:32,670 - src.modules.m3_timeseries - INFO - Running Time Series Module for MSFT
+2026-08-30 00:31:32,862 - src.modules.m3_timeseries - INFO - Running Time Series Module for GOOGL
+2026-08-30 00:31:33,035 - src.modules.m4_factors - INFO - Running Factor Model Module for AAPL
+2026-08-30 00:31:33,092 - src.modules.m4_factors - INFO - Running Factor Model Module for MSFT
+2026-08-30 00:31:33,148 - src.modules.m4_factors - INFO - Running Factor Model Module for GOOGL
+2026-08-30 00:31:33,198 - src.modules.m5_risk - INFO - Running Risk Module for AAPL
+2026-08-30 00:31:33,207 - src.modules.m5_risk - INFO - Running Risk Module for MSFT
+2026-08-30 00:31:33,216 - src.modules.m5_risk - INFO - Running Risk Module for GOOGL
+2026-08-30 00:31:33,225 - src.modules.m6_macro - INFO - Running Macro Module for AAPL
+2026-08-30 00:31:33,257 - QuantFinPipeline - WARNING - M6 failed for AAPL: 'predicted_macro_return'
+2026-08-30 00:31:33,257 - src.modules.m6_macro - INFO - Running Macro Module for MSFT
+2026-08-30 00:31:33,293 - QuantFinPipeline - WARNING - M6 failed for MSFT: 'predicted_macro_return'
+2026-08-30 00:31:33,293 - src.modules.m6_macro - INFO - Running Macro Module for GOOGL
+2026-08-30 00:31:33,334 - QuantFinPipeline - WARNING - M6 failed for GOOGL: 'predicted_macro_return'
+---------------------- QuantFinance-EDU Analysis Report -----------------------
+
+                             Module Scores (0û100)                             
++-----------------------------------------------------------------------------+
+|        |    M1    |    M2    |    M3    |   M4    |  M5  |  M6   |          |
+| Ticker | Fundameà | Valuatià | Time-Seà | Factors | Risk | Macro | Composià |
+|--------+----------+----------+----------+---------+------+-------+----------|
+| AAPL   |   69.4   |   38.2   |   54.9   |  40.0   | 29.4 |  N/A  |   54.7   |
+|--------+----------+----------+----------+---------+------+-------+----------|
+| MSFT   |   58.3   |   35.8   |   17.3   |  40.0   | 32.2 |  N/A  |   54.2   |
+|--------+----------+----------+----------+---------+------+-------+----------|
+| GOOGL  |   69.4   |   36.4   |   57.0   |  40.0   | 24.6 |  N/A  |   55.6   |
++-----------------------------------------------------------------------------+
+
+                           Risk Metrics                            
++-----------------------------------------------------------------+
+| Ticker | Ann. Vol | Max DD | VaR 95% | CVaR 95% | Beta | Sharpe |
+|--------+----------+--------+---------+----------+------+--------|
+| AAPL   |    30.5% | -38.5% |   2.97% |    4.39% | 1.20 |   0.80 |
+| MSFT   |    29.2% | -37.1% |   2.83% |    4.05% | 1.17 |   0.75 |
+| GOOGL  |    31.1% | -44.3% |   2.99% |    4.47% | 1.16 |   0.72 |
++-----------------------------------------------------------------+
+
+ Optimal Portfolio 
+   (Max Sharpe)    
++-----------------+
+| Ticker | Weight |
+|--------+--------|
+| AAPL   |  40.0% |
+| MSFT   |  32.0% |
+| GOOGL  |  28.0% |
++-----------------+
+  Expected return: 27.05%  Volatility: 26.17%  Sharpe: 0.88
+
+Monte Carlo (252-day, 2000 paths):
+  5th pct: N/A  Median: N/A  95th pct: N/A
+  Probability of loss: 19.5%
+
+       Out-of-Sample Walk-Forward Backtest Summary       
++-------------------------------------------------------+
+| Metric            |   Mean | Std Dev |    Min |   Max |
+|-------------------+--------+---------+--------+-------|
+| Total Return      |  27.0% |   31.3% | -32.0% | 55.0% |
+| Annualised Return |  27.0% |   31.4% | -32.1% | 55.2% |
+| Annual Volatility |  23.7% |    5.5% |  18.9% | 34.3% |
+| Sharpe Ratio      |   1.11 |    1.13 |  -1.03 |  2.09 |
+| Sortino Ratio     |   2.00 |    2.10 |  -1.69 |  4.41 |
+| Max Drawdown      | -18.0% |    9.3% | -32.9% | -8.5% |
+| Information Ratio |   0.75 |    0.94 |  -0.86 |  1.79 |
+| Portfolio Beta    |   1.20 |    0.08 |   1.10 |  1.31 |
+| Jensen's Alpha    |  11.0% |   11.6% |  -4.6% | 27.5% |
++-------------------------------------------------------+
+
++-----------------------------------------------------------------------------+
+| EDUCATIONAL DISCLAIMER                                                      |
+| This system is for educational purposes ONLY.                               |
+| It does NOT constitute financial or investment advice.                      |
+| All models are simplifications of reality.                                  |
+| Past performance does not guarantee future results.                         |
++-----------------------------------------------------------------------------+
+2026-08-30 00:31:33,524 - QuantFinPipeline - INFO - Results saved \u2192 results/pipeline_results.json

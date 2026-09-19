@@ -1,0 +1,191 @@
+{
+  "income_stmt": {
+    "2019-12-31": {
+      "Total Revenue": 154839532492.62592,
+      "Operating Income": 37390612665.77879,
+      "EBIT": 37390612665.77879,
+      "Net Income": 26159572260.232254,
+      "Tax Provision": 6953810347.656675,
+      "Pretax Income": 33113382607.88893,
+      "Interest Expense": -4277230057.889862,
+      "Operating Revenue": 154839532492.62592
+    },
+    "2020-12-31": {
+      "Total Revenue": 169121704803.03836,
+      "Operating Income": 32375805399.12075,
+      "EBIT": 32375805399.12075,
+      "Net Income": 23413204452.058167,
+      "Tax Provision": 6223763208.774956,
+      "Pretax Income": 29636967660.833122,
+      "Interest Expense": -2738837738.2876267,
+      "Operating Revenue": 169121704803.03836
+    },
+    "2021-12-31": {
+      "Total Revenue": 180406089935.81995,
+      "Operating Income": 34381005816.97324,
+      "EBIT": 34381005816.97324,
+      "Net Income": 24918013332.469322,
+      "Tax Provision": 6623775695.972857,
+      "Pretax Income": 31541789028.44218,
+      "Interest Expense": -2839216788.531063,
+      "Operating Revenue": 180406089935.81995
+    },
+    "2022-12-31": {
+      "Total Revenue": 234688770606.71454,
+      "Operating Income": 47178589044.08289,
+      "EBIT": 47178589044.08289,
+      "Net Income": 33969763923.50894,
+      "Tax Provision": 9029937245.489717,
+      "Pretax Income": 42999701168.99866,
+      "Interest Expense": -4178887875.084238,
+      "Operating Revenue": 234688770606.71454
+    },
+    "2023-12-31": {
+      "Total Revenue": 260913618947.04932,
+      "Operating Income": 63519654330.35991,
+      "EBIT": 63519654330.35991,
+      "Net Income": 44302922148.11345,
+      "Tax Provision": 11776726140.63775,
+      "Pretax Income": 56079648288.7512,
+      "Interest Expense": -7440006041.608711,
+      "Operating Revenue": 260913618947.04932
+    },
+    "2024-12-31": {
+      "Total Revenue": 236471482310.3384,
+      "Operating Income": 44537998642.2805,
+      "EBIT": 44537998642.2805,
+      "Net Income": 33336283846.657593,
+      "Tax Provision": 8861543807.339361,
+      "Pretax Income": 42197827653.996956,
+      "Interest Expense": -2340170988.283547,
+      "Operating Revenue": 236471482310.3384
+    },
+    "2025-12-31": {
+      "Total Revenue": 279404270407.8449,
+      "Operating Income": 52947454409.36846,
+      "EBIT": 52947454409.36846,
+      "Net Income": 37093312943.26656,
+      "Tax Provision": 9860247744.41263,
+      "Pretax Income": 46953560687.67919,
+      "Interest Expense": -5993893721.689271,
+      "Operating Revenue": 279404270407.8449
+    }
+  },
+  "balance_sheet": {
+    "2019-12-31": {
+      "Total Assets": 195873900758.9385,
+      "Total Liabilities Net Minority Interest": 103671778878.23343,
+      "Total Debt": 36592086431.80999,
+      "Stockholders Equity": 92202121880.70508,
+      "Cash And Cash Equivalents": 38210523286.84942,
+      "Working Capital": 41899606055.03955,
+      "Retained Earnings": 71590568506.0566,
+      "Ordinary Shares Number": 3144654088.0503144
+    },
+    "2020-12-31": {
+      "Total Assets": 235965289464.43143,
+      "Total Liabilities Net Minority Interest": 92944238436.06258,
+      "Total Debt": 77571532592.034,
+      "Stockholders Equity": 143021051028.36884,
+      "Cash And Cash Equivalents": 44257006049.79277,
+      "Working Capital": 58967264863.356606,
+      "Retained Earnings": 112509691506.90349,
+      "Ordinary Shares Number": 3144654088.0503144
+    },
+    "2021-12-31": {
+      "Total Assets": 294900053429.3269,
+      "Total Liabilities Net Minority Interest": 134378862658.16252,
+      "Total Debt": 46384933319.80358,
+      "Stockholders Equity": 160521190771.16437,
+      "Cash And Cash Equivalents": 36264996626.15917,
+      "Working Capital": 61307514521.30378,
+      "Retained Earnings": 115074221453.84497,
+      "Ordinary Shares Number": 3144654088.0503144
+    },
+    "2022-12-31": {
+      "Total Assets": 342605138965.7646,
+      "Total Liabilities Net Minority Interest": 163506411220.7371,
+      "Total Debt": 73944001479.4199,
+      "Stockholders Equity": 179098727745.0275,
+      "Cash And Cash Equivalents": 66902570349.50646,
+      "Working Capital": 66403767649.435684,
+      "Retained Earnings": 136612185166.73143,
+      "Ordinary Shares Number": 3144654088.0503144
+    },
+    "2023-12-31": {
+      "Total Assets": 334840697361.65125,
+      "Total Liabilities Net Minority Interest": 148911525996.97388,
+      "Total Debt": 60208516136.76731,
+      "Stockholders Equity": 185929171364.67737,
+      "Cash And Cash Equivalents": 55342470895.21558,
+      "Working Capital": 70898395668.92648,
+      "Retained Earnings": 153434608333.79932,
+      "Ordinary Shares Number": 3144654088.0503144
+    },
+    "2024-12-31": {
+      "Total Assets": 414206261582.1269,
+      "Total Liabilities Net Minority Interest": 196300422206.67145,
+      "Total Debt": 143811643898.37888,
+      "Stockholders Equity": 217905839375.45544,
+      "Cash And Cash Equivalents": 81722302568.37885,
+      "Working Capital": 88462946513.64586,
+      "Retained Earnings": 165228725464.29376,
+      "Ordinary Shares Number": 3144654088.0503144
+    },
+    "2025-12-31": {
+      "Total Assets": 370689416814.1884,
+      "Total Liabilities Net Minority Interest": 153991766605.13538,
+      "Total Debt": 62107129909.74981,
+      "Stockholders Equity": 216697650209.05304,
+      "Cash And Cash Equivalents": 56526570907.656845,
+      "Working Capital": 57473105867.597725,
+      "Retained Earnings": 172397826653.8159,
+      "Ordinary Shares Number": 3144654088.0503144
+    }
+  },
+  "cash_flow": {
+    "2019-12-31": {
+      "Operating Cash Flow": 35953267298.179184,
+      "Capital Expenditure": -10761291443.548355,
+      "Free Cash Flow": 25191975854.63083
+    },
+    "2020-12-31": {
+      "Operating Cash Flow": 35211468925.27974,
+      "Capital Expenditure": -12185572681.813295,
+      "Free Cash Flow": 23025896243.466446
+    },
+    "2021-12-31": {
+      "Operating Cash Flow": 39663016003.93567,
+      "Capital Expenditure": -11381494106.48829,
+      "Free Cash Flow": 28281521897.44738
+    },
+    "2022-12-31": {
+      "Operating Cash Flow": 51100020871.79717,
+      "Capital Expenditure": -11984211085.858456,
+      "Free Cash Flow": 39115809785.93872
+    },
+    "2023-12-31": {
+      "Operating Cash Flow": 61044957016.196014,
+      "Capital Expenditure": -11211253806.788343,
+      "Free Cash Flow": 49833703209.40767
+    },
+    "2024-12-31": {
+      "Operating Cash Flow": 54046596925.76394,
+      "Capital Expenditure": -17371440741.929836,
+      "Free Cash Flow": 36675156183.83411
+    },
+    "2025-12-31": {
+      "Operating Cash Flow": 55627783783.97598,
+      "Capital Expenditure": -12748867250.298195,
+      "Free Cash Flow": 42878916533.67779
+    }
+  },
+  "info": {
+    "symbol": "ZTS",
+    "marketCap": 500000000000.0,
+    "sharesOutstanding": 3144654088.0503144,
+    "trailingPE": 26.750017606508592,
+    "beta": 0.8799413630699924,
+    "sector": "Financial Services"
+  }
+}

@@ -1,0 +1,2 @@
+best_method,observed_sharpe,n_trials,variance_across_trials,n_observations,skew,kurtosis,expected_max_sharpe,dsr_probability
+Equal Weight,-0.19441714245933142,5,6.235382739597098e-05,1886,0.028291706157738603,2.991159773774014,0.0094172517098307,1.1237854624266309e-18
