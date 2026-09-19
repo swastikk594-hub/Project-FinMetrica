@@ -92,6 +92,23 @@ Every model implemented here is derived from first principles in `docs/math_appe
 *   Chopra, V.K. and Ziemba, W.T. (1993), "The Effect of Errors in Means, Variances, and Covariances on Optimal Portfolio Choice," *Journal of Portfolio Management*.
 *   DeMiguel, V., Garlappi, L., and Uppal, R. (2009), "Optimal Versus Naive Diversification: How Inefficient is the 1/N Portfolio Strategy?," *Review of Financial Studies*.
 
+## Installation
+
+To run FinMetrica locally, you will need Python 3.9+ and Git.
+
+```bash
+# Clone the repository
+git clone https://github.com/swastikk594-hub/Project-FinMetrica.git
+cd Project-FinMetrica
+
+# Create a virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# Install the dependencies
+pip install -r requirements.txt
+```
+
 ## How to Use It (CLI Commands)
 
 FinMetrica is driven by a powerful Command Line Interface (`src.cli`) designed to handle everything from point-in-time portfolio recommendations to massive scientific backtests. 
